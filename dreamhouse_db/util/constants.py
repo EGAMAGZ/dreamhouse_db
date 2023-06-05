@@ -1,6 +1,8 @@
 import os
 from typing import Dict, Final
 
+FAKER_LOCALE = "es_MX"
+
 DEFAULT_USER: Final[str] = 'root'
 DEFAULT_PASSWORD: Final[str] = 'root'
 DEFAULT_HOST: Final[str] = '127.0.0.1'

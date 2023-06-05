@@ -10,8 +10,6 @@ packages = [{include = "dreamhouse_db"}]
 python = "^3.11"
 faker = "^18.10.1"
 mysql-connector-python = "^8.0.33"
-simple-query-builder = "^0.3.6"
-mariadb = "^1.1.6"
 
 
 [build-system]
@@ -19,5 +17,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
-select = ["W", "F", "I", "N", "ANN"]
-fixable = ["I", "F", "ANN"]
+select = ["W", "F", "I", "N"]
+fixable = ["I", "F"]
