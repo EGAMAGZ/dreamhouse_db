@@ -16,7 +16,7 @@ CREATE TABLE Directores(
     txt_email_dir VARCHAR(256) NOT NULL,
     num_tel_dir VARCHAR(10) NOT NULL,
     fk_id_suc INT NOT NULL,
-    FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc)
+    FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 CREATE TABLE Supervisores(
@@ -25,7 +25,7 @@ CREATE TABLE Supervisores(
     txt_email_sup VARCHAR(256) NOT NULL,
     num_tel_sup VARCHAR(10) NOT NULL,
     fk_id_suc INT NOT NULL,
-    FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc)
+    FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE Clientes(
@@ -53,7 +53,7 @@ CREATE TABLE Propiedades(
     bool_disp_propd BOOLEAN NOT NULL DEFAULT 0,
     txt_comp_propd NVARCHAR(128) NOT NULL,
     fk_id_prop INT NOT NULL,
-    FOREIGN KEY (fk_id_prop) REFERENCES Propietarios(pk_id_prop)
+    FOREIGN KEY (fk_id_prop) REFERENCES Propietarios(pk_id_prop) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE Contratos(
@@ -68,9 +68,9 @@ CREATE TABLE Contratos(
     num_pag_cont INT(5) NOT NULL,
     bool_val_cont BOOLEAN NOT NULL DEFAULT 0,
 
-    FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli),
-    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd),
-    FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup)
+    FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE Citas(
@@ -79,8 +79,8 @@ CREATE TABLE Citas(
     txt_hora_cit VARCHAR(5) NOT NULL,
     fk_id_propd INT NOT NULL,
     fk_id_cli INT NOT NULL,
-    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd),
-    FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli)
+    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Citas_de_Revision(
@@ -90,8 +90,8 @@ CREATE TABLE Citas_de_Revision(
     txt_com_cit_rev NVARCHAR(128) NULL,
     fk_id_propd INT NOT NULL,
     fk_id_sup INT NOT NULL,
-    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd),
-    FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup)
+    FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- * Creación de datos * --
