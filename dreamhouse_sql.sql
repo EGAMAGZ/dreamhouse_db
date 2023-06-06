@@ -139,3 +139,25 @@ VALUES ('Continuación Polonia,Vieja Suiza,91825',1,'20m2',16307989, 'Lorem ipsu
 ('Continuación Quintana Roo,Nueva Yemen,09742',3,'14m2',83217665, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3),
 ('Andador Tamaulipas,Nueva República Centroafricana,17329-4426',4,'16m2',90047288, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4),
 ('Avenida Jordania,Nueva México,19354',2,'50m2',27984961, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5);
+
+UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=1;
+UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=2;
+UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=3;
+
+INSERT INTO Contratos(fk_id_cli,fk_id_propd,txt_cond_al_cont,fk_id_sup,txt_ini_cont,txt_fin_cont,txt_cond_com_cont,num_pag_cont,bool_val_cont) VALUES
+(1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup001', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 9481, 1),
+(2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup003', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1027, 0),
+(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup001', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6686, 1);
+
+INSERT INTO Citas(txt_fecha_cit,txt_hora_cit,fk_id_propd,fk_id_cli) VALUES
+('20/8/2022', '10:00', 1, 1),
+('26/10/2022', '12:00', 2, 2),
+('15/9/2022', '9:30', 3, 3);
+
+INSERT INTO Citas_de_Revision(txt_fecha_cit_rev,bool_rev_cit_rev,txt_com_cit_rev,fk_id_propd,fk_id_sup) VALUES
+('17/2/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, 'Sup001'),
+('25/1/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2, 'Sup003'),
+('2/7/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3, 'Sup001'),
+('30/11/2022', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4, 'Sup005'),
+('2/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5, 'Sup002'),
+('12/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6, 'Sup004');
