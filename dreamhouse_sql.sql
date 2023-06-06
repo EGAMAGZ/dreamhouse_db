@@ -25,6 +25,7 @@ CREATE TABLE Supervisores(
     txt_email_sup VARCHAR(256) NOT NULL,
     num_tel_sup VARCHAR(10) NOT NULL,
     fk_id_suc INT NOT NULL,
+    bool_act_sup BOOLEAN NOT NULL DEFAULT 1,
     FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
