@@ -5,26 +5,26 @@ USE dreamhousedb;
 
 -- * Creación de tablas * --
 CREATE TABLE Sucursales(
-    pk_id_suc VARCHAR(5) PRIMARY KEY NOT NULL,
+    pk_id_suc INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_dir_suc NVARCHAR(64) NOT NULL,
     num_tel_suc VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE Directores(
-    pk_id_dir VARCHAR(6) PRIMARY KEY NOT NULL,
+    pk_id_dir INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_dir NVARCHAR(64) NOT NULL,
     txt_email_dir VARCHAR(256) NOT NULL,
     num_tel_dir VARCHAR(10) NOT NULL,
-    fk_id_suc VARCHAR(5) NOT NULL,
+    fk_id_suc INT NOT NULL,
     FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc)
 );
 
 CREATE TABLE Supervisores(
-    pk_id_sup VARCHAR(6) PRIMARY KEY NOT NULL,
+    pk_id_sup INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_sup NVARCHAR(64) NOT NULL,
     txt_email_sup VARCHAR(256) NOT NULL,
     num_tel_sup VARCHAR(10) NOT NULL,
-    fk_id_suc VARCHAR(5) NOT NULL,
+    fk_id_suc INT NOT NULL,
     FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE Contratos(
     fk_id_cli INT NOT NULL,
     fk_id_propd INT NOT NULL,
     txt_cond_al_cont NVARCHAR(256) NOT NULL,
-    fk_id_sup VARCHAR(6) NOT NULL,
+    fk_id_sup INT NOT NULL,
     txt_ini_cont VARCHAR(10) NOT NULL,
     txt_fin_cont VARCHAR(10) NOT NULL,
     txt_cond_com_cont NVARCHAR(256) NOT NULL,
@@ -89,29 +89,29 @@ CREATE TABLE Citas_de_Revision(
     bool_rev_cit_rev BOOLEAN NOT NULL DEFAULT 0,
     txt_com_cit_rev NVARCHAR(128) NULL,
     fk_id_propd INT NOT NULL,
-    fk_id_sup VARCHAR(6) NOT NULL,
+    fk_id_sup INT NOT NULL,
     FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd),
     FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup)
 );
 
 -- * Creación de datos * --
-INSERT INTO Sucursales(pk_id_suc, txt_dir_suc, num_tel_suc) VALUES
-('S0001', 'Viaducto Zacatecas,San Gabriela los altos,05960', '5951140476'),
-('S0002', 'Pasaje Guillen,San Georgina los bajos,01804-7596', '5951140476'),
-('S0003','Periférico Norte Perales,Nueva Malasia,18695-6135','5951140476');
+INSERT INTO Sucursales(txt_dir_suc, num_tel_suc) VALUES
+('Viaducto Zacatecas,San Gabriela los altos,05960', '5951140476'),
+('Pasaje Guillen,San Georgina los bajos,01804-7596', '5951140476'),
+('Periférico Norte Perales,Nueva Malasia,18695-6135','5951140476');
 
-INSERT INTO Directores(pk_id_dir, txt_nom_dir, txt_email_dir, num_tel_dir, fk_id_suc)
-VALUES ('Dir001', "Marisol Nava Loya", "lelizondo@dreamhouse.com", '5951140476', "S0001"),
-('Dir002', 'Dulce María Diana Garica', 'hernanpichardo@dreamhouse.com', '5951140476', 'S0002'),
-('Dir003','José María Leiva', 'cristianvalles@dreamhouse.com', '5951140476', 'S0003');
+INSERT INTO Directores(txt_nom_dir, txt_email_dir, num_tel_dir, fk_id_suc)
+VALUES ("Marisol Nava Loya", "lelizondo@dreamhouse.com", '5951140476', 1),
+('Dulce María Diana Garica', 'hernanpichardo@dreamhouse.com', '5951140476', 2),
+('José María Leiva', 'cristianvalles@dreamhouse.com', '5951140476', 3);
 
-INSERT INTO Supervisores(pk_id_sup,txt_nom_sup,txt_email_sup,num_tel_sup,fk_id_suc)
-VALUES ('Sup001', 'Isabela Héctor Adame', 'suarezanel@dreamhouse.com', '5951140476', 'S0001'),
-('Sup002', 'Adela Guajardo Velásquez', 'yavila@dreamhouse.com', '5951140476', 'S0002'),
-('Sup003','Benito Héctor Gaona Arevalo', 'ccasarez@dreamhouse.com', '5951140476', 'S0003'),
-('Sup004','Jos Wilfrido Camarillo Piña', 'rlozada@dreamhouse.com', '5951140476', 'S0001'),
-('Sup005','Lourdes Mota Pantoja', 'gregoriopichardo@dreamhouse.com', '5951140476', 'S0002'),
-('Sup006','Rosa Cornelio Feliciano Guillen', 'robertosolis@dreamhouse.com', '5951140476', 'S0003');
+INSERT INTO Supervisores(txt_nom_sup,txt_email_sup,num_tel_sup,fk_id_suc)
+VALUES ('Isabela Héctor Adame', 'suarezanel@dreamhouse.com', '5951140476', 1),
+('Adela Guajardo Velásquez', 'yavila@dreamhouse.com', '5951140476', 2),
+('Benito Héctor Gaona Arevalo', 'ccasarez@dreamhouse.com', '5951140476', 3),
+('Jos Wilfrido Camarillo Piña', 'rlozada@dreamhouse.com', '5951140476', 1),
+('Lourdes Mota Pantoja', 'gregoriopichardo@dreamhouse.com', '5951140476', 2),
+('Rosa Cornelio Feliciano Guillen', 'robertosolis@dreamhouse.com', '5951140476', 3);
 
 INSERT INTO Clientes(txt_nom_cli,num_tel_cli,txt_email_cli) 
 VALUES ('Gabino Laura Rascón Vaca', '5951140476','villaloboscornelio@garay.org'),
@@ -145,9 +145,9 @@ UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=2;
 UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=3;
 
 INSERT INTO Contratos(fk_id_cli,fk_id_propd,txt_cond_al_cont,fk_id_sup,txt_ini_cont,txt_fin_cont,txt_cond_com_cont,num_pag_cont,bool_val_cont) VALUES
-(1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup001', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 9481, 1),
-(2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup003', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1027, 0),
-(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.','Sup001', '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6686, 1);
+(1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',1, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 9481, 1),
+(2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',3, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1027, 0),
+(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',1, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6686, 1);
 
 INSERT INTO Citas(txt_fecha_cit,txt_hora_cit,fk_id_propd,fk_id_cli) VALUES
 ('20/8/2022', '10:00', 1, 1),
@@ -155,9 +155,9 @@ INSERT INTO Citas(txt_fecha_cit,txt_hora_cit,fk_id_propd,fk_id_cli) VALUES
 ('15/9/2022', '9:30', 3, 3);
 
 INSERT INTO Citas_de_Revision(txt_fecha_cit_rev,bool_rev_cit_rev,txt_com_cit_rev,fk_id_propd,fk_id_sup) VALUES
-('17/2/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, 'Sup001'),
-('25/1/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2, 'Sup003'),
-('2/7/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3, 'Sup001'),
-('30/11/2022', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4, 'Sup005'),
-('2/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5, 'Sup002'),
-('12/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6, 'Sup004');
+('17/2/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, 1),
+('25/1/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2, 3),
+('2/7/2022', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3, 1),
+('30/11/2022', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4, 5),
+('2/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5, 2),
+('12/3/2023', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 6, 4);
