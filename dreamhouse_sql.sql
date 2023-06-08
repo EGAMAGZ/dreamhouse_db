@@ -51,7 +51,7 @@ CREATE TABLE Propiedades(
     num_no_hab_propd INT(10) NOT NULL,
     txt_tam_propd VARCHAR(5) NOT NULL,
     num_prec_propd INT(8) NOT NULL,
-    bool_disp_propd BOOLEAN NOT NULL DEFAULT 0,
+    bool_disp_propd BOOLEAN NOT NULL DEFAULT 1,
     txt_comp_propd NVARCHAR(128) NOT NULL,
     fk_id_prop INT NOT NULL,
     bool_act_propd BOOLEAN NOT NULL DEFAULT 1,
