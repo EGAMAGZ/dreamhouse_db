@@ -36,7 +36,9 @@ WHERE
     pk_id_propd = 6;
 
 -- DR-HA-CU4.4: GENERAR INFORME POR MUNICIPIO
--- TODO: TERMINAR DE HACER
+-- * Cantitdad de clientes mayores a 40 años
+SELECT COUNT(*) FROM Clientes WHERE num_edad_cli >= 40;
+
 -- DR-HA-CU4.5: VALIDAR CONTRARO MEDIANTE LA LISTA DE VALIDACION
 UPDATE
     Contratos
