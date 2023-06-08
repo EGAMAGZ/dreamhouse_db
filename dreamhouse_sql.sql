@@ -54,6 +54,7 @@ CREATE TABLE Propiedades(
     bool_disp_propd BOOLEAN NOT NULL DEFAULT 0,
     txt_comp_propd NVARCHAR(128) NOT NULL,
     fk_id_prop INT NOT NULL,
+    bool_act_propd BOOLEAN NOT NULL DEFAULT 1,
     FOREIGN KEY (fk_id_prop) REFERENCES Propietarios(pk_id_prop) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -148,7 +149,7 @@ UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=3;
 INSERT INTO Contratos(fk_id_cli,fk_id_propd,txt_cond_al_cont,fk_id_sup,txt_ini_cont,txt_fin_cont,txt_cond_com_cont,num_pag_cont,bool_val_cont) VALUES
 (1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',1, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 9481, 1),
 (2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',3, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1027, 0),
-(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',1, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6686, 1);
+(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',1, '30/10/2022', '06/06/2023', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6686, 0);
 
 INSERT INTO Citas(txt_fecha_cit,txt_hora_cit,fk_id_propd,fk_id_cli) VALUES
 ('20/8/2022', '10:00', 1, 1),
