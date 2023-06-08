@@ -34,7 +34,8 @@ CREATE TABLE Clientes(
     pk_id_cli INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_cli NVARCHAR(64) NOT NULL,
     num_tel_cli VARCHAR(10) NOT NULL,
-    txt_email_cli VARCHAR(256) NOT NULL
+    txt_email_cli VARCHAR(256) NOT NULL,
+    num_edad_cli INT(3) NOT NULL
 );
 
 CREATE TABLE Propietarios(
@@ -82,7 +83,6 @@ CREATE TABLE Citas(
     fk_id_propd INT NOT NULL,
     fk_id_cli INT NOT NULL,
     bool_confir_cit BOOLEAN NOT NULL DEFAULT 0,
-    -- TODO: WORD
     FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -183,52 +183,61 @@ VALUES
     );
 
 INSERT INTO
-    Clientes(txt_nom_cli, num_tel_cli, txt_email_cli)
+    Clientes(txt_nom_cli, num_tel_cli, txt_email_cli, num_edad_cli)
 VALUES
     (
         'Gabino Laura Rascón Vaca',
         '5951140476',
-        'villaloboscornelio@garay.org'
+        'villaloboscornelio@garay.org',
+        27
     ),
     (
         'Dalia Puente Solís',
         '5951140476',
-        'mariana85@jurado.com'
+        'mariana85@jurado.com',
+        30
     ),
     (
         'René José Emilio Haro Berríos',
         '5951140476',
-        'cynthiamena@camarillo.info'
+        'cynthiamena@camarillo.info',
+        45
     ),
     (
         'Teodoro Cadena Vaca',
         '5951140476',
-        'umota@club.com'
+        'umota@club.com',
+        42
     ),
     (
         'Rafaél Joaquín Heredia Hurtado',
         '5951140476',
-        'vguardado@negron.com'
+        'vguardado@negron.com',
+        37
     ),
     (
         'Ernesto Montemayor',
         '5951140476',
-        'angelicacalderon@gmail.com'
+        'angelicacalderon@gmail.com',
+        48
     ),
     (
         'Agustín Camarillo',
         '5951140476',
-        'leonreynaldo@gmail.com'
+        'leonreynaldo@gmail.com',
+        31
     ),
     (
         'Noelia Villegas Pérez',
         '5951140476',
-        'elsasalgado@almanza-renteria.com'
+        'elsasalgado@almanza-renteria.com',
+        37
     ),
     (
         'Darío Arevalo',
         '5951140476',
-        'nevarezmayte@rodriguez.com'
+        'nevarezmayte@rodriguez.com',
+        40
     );
 
 INSERT INTO
