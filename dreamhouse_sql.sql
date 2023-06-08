@@ -54,7 +54,7 @@ CREATE TABLE Propiedades(
     bool_disp_propd BOOLEAN NOT NULL DEFAULT 1,
     txt_comp_propd NVARCHAR(128) NOT NULL,
     fk_id_prop INT NOT NULL,
-    bool_act_propd BOOLEAN NOT NULL DEFAULT 1,
+    bool_act_propd BOOLEAN NOT NULL DEFAULT 0,
     FOREIGN KEY (fk_id_prop) REFERENCES Propietarios(pk_id_prop) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -134,13 +134,13 @@ INSERT INTO Propietarios(txt_nom_prop,txt_dir_prop,num_tel_prop,txt_email_prop) 
 ('Alejandro Garza Carmona', 'Peatonal Sur Sierra,Vieja Lesotho,65971','5951140476','florezrosario@gaytan.biz'),
 ('Noelia Treviño', 'Peatonal Norte Tapia,Vieja Mauricio,92539-3737','5951140476','lucas56@grupo.net');
 
-INSERT INTO Propiedades(txt_ubi_propd,num_no_hab_propd,txt_tam_propd,num_prec_propd,txt_comp_propd,fk_id_prop)
-VALUES ('Continuación Polonia,Vieja Suiza,91825',1,'20m2',16307989, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1),
-('Continuación Sinaloa,Nueva Eslovaquia,99036-2497',10,'32m2',94680228, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2),
-('Andador Sur Olivas,San Elena los altos,77962',6,'6m2',40645352, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2),
-('Continuación Quintana Roo,Nueva Yemen,09742',3,'14m2',83217665, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3),
-('Andador Tamaulipas,Nueva República Centroafricana,17329-4426',4,'16m2',90047288, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4),
-('Avenida Jordania,Nueva México,19354',2,'50m2',27984961, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5);
+INSERT INTO Propiedades(txt_ubi_propd,num_no_hab_propd,txt_tam_propd,num_prec_propd,txt_comp_propd,fk_id_prop, bool_act_propd)
+VALUES ('Continuación Polonia,Vieja Suiza,91825',1,'20m2',16307989, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, 1),
+('Continuación Sinaloa,Nueva Eslovaquia,99036-2497',10,'32m2',94680228, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2, 1),
+('Andador Sur Olivas,San Elena los altos,77962',6,'6m2',40645352, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 2, 1),
+('Continuación Quintana Roo,Nueva Yemen,09742',3,'14m2',83217665, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 3, 0),
+('Andador Tamaulipas,Nueva República Centroafricana,17329-4426',4,'16m2',90047288, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 4, 0),
+('Avenida Jordania,Nueva México,19354',2,'50m2',27984961, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 5, 1);
 
 UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=1;
 UPDATE Propiedades SET bool_disp_propd=1 WHERE pk_id_propd=2;
