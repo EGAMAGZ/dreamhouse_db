@@ -48,7 +48,7 @@ VALUES
     ('27/6/2023', '13:00', 8, 4);
 
 UPDATE
-    Cctas
+    Citas
 SET
     bool_confir_cit = 1
 WHERE

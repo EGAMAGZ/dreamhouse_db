@@ -11,10 +11,10 @@ INSERT INTO
 VALUES
     (
         'Martinez González Iris Yonitzi',
-        'martinez.gonzalez@dreamhouse.com',
+        'iris.gonzalez@dreamhouse.com',
         '1234567890',
-        1,
-        1
+        3,
+        0
     );
 
 -- DR-HA-CU2.2: Editar supervisor:
@@ -36,9 +36,16 @@ FROM
     supervisores;
 
 -- DR-HA-CU2.4: Consultar supervisores Con la direccion de la sucursal y numero de contacto de la sucursal:
-SELECT s.pk_id_sup, s.txt_nom_sup, s.txt_email_sup, s.num_tel_sup, su.txt_dir_suc, su.num_tel_suc
-FROM supervisores s
-INNER JOIN sucursales su ON s.fk_id_suc = su.pk_id_suc;
+SELECT
+    s.pk_id_sup,
+    s.txt_nom_sup,
+    s.txt_email_sup,
+    s.num_tel_sup,
+    su.txt_dir_suc,
+    su.num_tel_suc
+FROM
+    supervisores s
+    INNER JOIN sucursales su ON s.fk_id_suc = su.pk_id_suc;
 
 -- DR-HA-CU2.3: Dar de baja supervisor:
 UPDATE

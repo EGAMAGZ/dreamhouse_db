@@ -1,16 +1,12 @@
 DROP DATABASE IF EXISTS dreamhousedb;
-
 CREATE DATABASE dreamhousedb;
-
 USE dreamhousedb;
-
 -- * Creación de tablas * --
 CREATE TABLE Sucursales(
     pk_id_suc INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_dir_suc NVARCHAR(64) NOT NULL,
     num_tel_suc VARCHAR(10) NOT NULL
 );
-
 CREATE TABLE Directores(
     pk_id_dir INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_dir NVARCHAR(64) NOT NULL,
@@ -19,7 +15,6 @@ CREATE TABLE Directores(
     fk_id_suc INT NOT NULL,
     FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE Supervisores(
     pk_id_sup INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_sup NVARCHAR(64) NOT NULL,
@@ -29,7 +24,6 @@ CREATE TABLE Supervisores(
     bool_act_sup BOOLEAN NOT NULL DEFAULT 1,
     FOREIGN KEY (fk_id_suc) REFERENCES Sucursales(pk_id_suc) ON UPDATE CASCADE ON DELETE RESTRICT
 );
-
 CREATE TABLE Clientes(
     pk_id_cli INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_cli NVARCHAR(64) NOT NULL,
@@ -37,7 +31,6 @@ CREATE TABLE Clientes(
     txt_email_cli VARCHAR(256) NOT NULL,
     num_edad_cli INT(3) NOT NULL
 );
-
 CREATE TABLE Propietarios(
     pk_id_prop INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_nom_prop NVARCHAR(64) NOT NULL,
@@ -46,7 +39,6 @@ CREATE TABLE Propietarios(
     txt_email_prop VARCHAR(256) NOT NULL,
     bool_ver_prop BOOLEAN NOT NULL DEFAULT 0
 );
-
 CREATE TABLE Propiedades(
     pk_id_propd INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_ubi_propd NVARCHAR(64) NOT NULL,
@@ -59,7 +51,6 @@ CREATE TABLE Propiedades(
     bool_act_propd BOOLEAN NOT NULL DEFAULT 0,
     FOREIGN KEY (fk_id_prop) REFERENCES Propietarios(pk_id_prop) ON DELETE RESTRICT ON UPDATE CASCADE
 );
-
 CREATE TABLE Contratos(
     pk_id_cont INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fk_id_cli INT NOT NULL,
@@ -75,7 +66,6 @@ CREATE TABLE Contratos(
     FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE RESTRICT ON UPDATE RESTRICT,
     FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
-
 CREATE TABLE Citas(
     pk_id_cit INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_fecha_cit VARCHAR(10) NOT NULL,
@@ -86,7 +76,6 @@ CREATE TABLE Citas(
     FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (fk_id_cli) REFERENCES Clientes(pk_id_cli) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE Citas_de_Revision(
     pk_id_cit_rev INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     txt_fecha_cit_rev VARCHAR(10) NOT NULL,
@@ -97,12 +86,9 @@ CREATE TABLE Citas_de_Revision(
     FOREIGN KEY (fk_id_propd) REFERENCES Propiedades(pk_id_propd) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (fk_id_sup) REFERENCES Supervisores(pk_id_sup) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 -- * Creación de datos * --
-INSERT INTO
-    Sucursales(txt_dir_suc, num_tel_suc)
-VALUES
-    (
+INSERT INTO Sucursales(txt_dir_suc, num_tel_suc)
+VALUES (
         'Viaducto Zacatecas,San Gabriela los altos,05960',
         '5951140476'
     ),
@@ -114,16 +100,13 @@ VALUES
         'Periférico Norte Perales,Nueva Malasia,18695-6135',
         '5951140476'
     );
-
-INSERT INTO
-    Directores(
+INSERT INTO Directores(
         txt_nom_dir,
         txt_email_dir,
         num_tel_dir,
         fk_id_suc
     )
-VALUES
-    (
+VALUES (
         "Marisol Nava Loya",
         "lelizondo@dreamhouse.com",
         '5951140476',
@@ -141,11 +124,13 @@ VALUES
         '5951140476',
         3
     );
-
-INSERT INTO
-    Supervisores(txt_nom_sup, txt_email_sup, num_tel_sup, fk_id_suc)
-VALUES
-    (
+INSERT INTO Supervisores(
+        txt_nom_sup,
+        txt_email_sup,
+        num_tel_sup,
+        fk_id_suc
+    )
+VALUES (
         'Isabela Héctor Adame',
         'suarezanel@dreamhouse.com',
         '5951140476',
@@ -181,11 +166,13 @@ VALUES
         '5951140476',
         3
     );
-
-INSERT INTO
-    Clientes(txt_nom_cli, num_tel_cli, txt_email_cli, num_edad_cli)
-VALUES
-    (
+INSERT INTO Clientes(
+        txt_nom_cli,
+        num_tel_cli,
+        txt_email_cli,
+        num_edad_cli
+    )
+VALUES (
         'Gabino Laura Rascón Vaca',
         '5951140476',
         'villaloboscornelio@garay.org',
@@ -239,16 +226,13 @@ VALUES
         'nevarezmayte@rodriguez.com',
         40
     );
-
-INSERT INTO
-    Propietarios(
+INSERT INTO Propietarios(
         txt_nom_prop,
         txt_dir_prop,
         num_tel_prop,
         txt_email_prop
     )
-VALUES
-    (
+VALUES (
         'Lucía Ramiro Jáquez',
         'Callejón San Luis Potosí,Nueva Serbia,62681',
         '5951140476',
@@ -284,9 +268,7 @@ VALUES
         '5951140476',
         'lucas56@grupo.net'
     );
-
-INSERT INTO
-    Propiedades(
+INSERT INTO Propiedades(
         txt_ubi_propd,
         num_no_hab_propd,
         txt_tam_propd,
@@ -295,8 +277,7 @@ INSERT INTO
         fk_id_prop,
         bool_act_propd
     )
-VALUES
-    (
+VALUES (
         'Continuación Polonia,Vieja Suiza,91825',
         1,
         '20m2',
@@ -350,30 +331,16 @@ VALUES
         5,
         1
     );
-
-UPDATE
-    Propiedades
-SET
-    bool_disp_propd = 1
-WHERE
-    pk_id_propd = 1;
-
-UPDATE
-    Propiedades
-SET
-    bool_disp_propd = 1
-WHERE
-    pk_id_propd = 2;
-
-UPDATE
-    Propiedades
-SET
-    bool_disp_propd = 1
-WHERE
-    pk_id_propd = 3;
-
-INSERT INTO
-    Contratos(
+UPDATE Propiedades
+SET bool_disp_propd = 1
+WHERE pk_id_propd = 1;
+UPDATE Propiedades
+SET bool_disp_propd = 1
+WHERE pk_id_propd = 2;
+UPDATE Propiedades
+SET bool_disp_propd = 1
+WHERE pk_id_propd = 3;
+INSERT INTO Contratos(
         fk_id_cli,
         fk_id_propd,
         txt_cond_al_cont,
@@ -384,8 +351,7 @@ INSERT INTO
         num_pag_cont,
         bool_val_cont
     )
-VALUES
-    (
+VALUES (
         1,
         1,
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -418,24 +384,23 @@ VALUES
         6686,
         0
     );
-
-INSERT INTO
-    Citas(txt_fecha_cit, txt_hora_cit, fk_id_propd, fk_id_cli)
-VALUES
-    ('20/8/2022', '10:00', 1, 1),
+INSERT INTO Citas(
+        txt_fecha_cit,
+        txt_hora_cit,
+        fk_id_propd,
+        fk_id_cli
+    )
+VALUES ('20/8/2022', '10:00', 1, 1),
     ('26/10/2022', '12:00', 2, 2),
     ('15/9/2022', '9:30', 3, 3);
-
-INSERT INTO
-    Citas_de_Revision(
+INSERT INTO Citas_de_Revision(
         txt_fecha_cit_rev,
         bool_rev_cit_rev,
         txt_com_cit_rev,
         fk_id_propd,
         fk_id_sup
     )
-VALUES
-    (
+VALUES (
         '17/2/2022',
         1,
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
