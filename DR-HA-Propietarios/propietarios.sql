@@ -1,7 +1,7 @@
 -- DR-HA-CU5: GESTION DE ALQUILERES
 -- DR-HA-CU5.1: REGISTRO DE ALQUILERES
 INSERT INTO
-    Propiedades(
+    propiedades(
         txt_ubi_propd,
         num_no_hab_propd,
         txt_tam_propd,
@@ -21,7 +21,7 @@ VALUES
 
 -- DR-HA-CU5.2: EDICION DE ALQUILERES
 UPDATE
-    Propiedades
+    propiedades
 SET
     num_no_hab_propd = 3,
     txt_tam_propd = '24m2',
@@ -31,7 +31,7 @@ WHERE
 
 -- DR-HA-CU5.3: CONFIRMACION DE CITA DE ALQUILER
 UPDATE
-    Propiedades
+    propiedades
 SET
     bool_act_propd = 1
 WHERE
@@ -48,7 +48,7 @@ VALUES
     ('27/6/2023', '13:00', 8, 4);
 
 UPDATE
-    Citas
+    Cctas
 SET
     bool_confir_cit = 1
 WHERE
@@ -56,7 +56,7 @@ WHERE
 
 -- DR-HA-CU5.4: GENERAR CONTRATO DE ALQUILER
 INSERT INTO
-    Contratos(
+    contratos(
         fk_id_cli,
         fk_id_propd,
         txt_cond_al_cont,

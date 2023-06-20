@@ -8,14 +8,14 @@ SELECT
     num_prec_propd,
     txt_comp_propd
 FROM
-    Propiedades
+    propiedades
 WHERE
     bool_disp_propd = 1
     AND bool_act_propd = 1;
 
 -- DR-HA-CU6.2: REGISTRAR CITA DE ALQUILER
 INSERT INTO
-    Citas(
+    citas(
         txt_fecha_cit,
         txt_hora_cit,
         fk_id_propd,

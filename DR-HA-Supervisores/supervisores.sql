@@ -1,7 +1,7 @@
 -- DR-HA-CU4: GESTION DE PROPIEDADES
 -- DR-HA-CU4.1: DAR DE ALTA PROPIEDADES
 INSERT INTO
-    Propiedades(
+    propiedades(
         txt_ubi_propd,
         num_no_hab_propd,
         txt_tam_propd,
@@ -21,7 +21,7 @@ VALUES
 
 -- DR-HA-CU4.3: DAR DE BAJA PROPIEDADES
 UPDATE
-    Propiedades
+    propiedades
 SET
     bool_act_propd = 0
 WHERE
@@ -29,7 +29,7 @@ WHERE
 
 -- DR-HA-CU4.2: DAR DE ALTA PROPIEDADES
 UPDATE
-    Propiedades
+    propiedades
 SET
     bool_act_propd = 1
 WHERE
@@ -41,7 +41,7 @@ SELECT COUNT(*) FROM Clientes WHERE num_edad_cli >= 40;
 
 -- DR-HA-CU4.5: VALIDAR CONTRARO MEDIANTE LA LISTA DE VALIDACION
 UPDATE
-    Contratos
+    contratos
 SET
     bool_val_cont = 1
 WHERE
